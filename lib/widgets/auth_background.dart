@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class AuthBackground extends StatelessWidget {
 
-  
   final Widget child;
 
   const AuthBackground({Key? key, required this.child}) : super(key: key);
@@ -24,6 +23,7 @@ class AuthBackground extends StatelessWidget {
           const _HeaderIcon(),
 
           child,
+
 
 
         ],
