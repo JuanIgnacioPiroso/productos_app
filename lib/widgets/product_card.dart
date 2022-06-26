@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:productos_app/models/models.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key}) : super(key: key);
+
+  final Product product;
+
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +20,22 @@ class ProductCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
 
-            _BackgroundImage(),
+            _BackgroundImage(product.picture),
 
-            _ProductDetails(),
+            _ProductDetails(
+              title: product.name,
+              description: product.id!,
+            ),
 
             Positioned (
               top: 0,
               right: 0,
-              child: _PriceTag()
+              child: _PriceTag(product.price),
               ),
 
-            Positioned(
+              
+              if(!product.available)
+              Positioned(
               top: 0,
               left: 0,
               child: _NotAvailable()
@@ -70,7 +79,7 @@ class _NotAvailable extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            'Not Available',
+            'No disponible',
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -84,6 +93,10 @@ class _NotAvailable extends StatelessWidget {
 }
 
 class _PriceTag extends StatelessWidget {
+
+  final double price;
+
+  const _PriceTag(this.price);
 
   @override
   Widget build(BuildContext context) {
@@ -99,11 +112,11 @@ class _PriceTag extends StatelessWidget {
         borderRadius: BorderRadius.only(topRight: Radius.circular(25), bottomLeft: Radius.circular(25))
       ),
 
-      child: const FittedBox(
+      child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Text('\$100', style: TextStyle(fontSize: 20, color: Colors.white)),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text('\$$price', style: const TextStyle(fontSize: 20, color: Colors.white)),
         ),
       ),
     );
@@ -111,6 +124,14 @@ class _PriceTag extends StatelessWidget {
 }
 
 class _ProductDetails extends StatelessWidget {
+
+  final String title;
+  final String description;
+
+  const _ProductDetails({
+    required this.title, 
+    required this.description
+});
 
   @override
   Widget build(BuildContext context) {
@@ -123,10 +144,10 @@ class _ProductDetails extends StatelessWidget {
         decoration: _buildBoxDecoration(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children:  [
             Text(
-              'Product Name', 
-              style: TextStyle(
+              title, 
+              style: const TextStyle(
                 color: Colors.white, 
                 fontSize: 20, 
                 fontWeight: 
@@ -137,7 +158,7 @@ class _ProductDetails extends StatelessWidget {
                 ),
             
             
-            Text('Id del producto', style: TextStyle(color: Colors.white, fontSize: 15),),
+            Text(description, style: const TextStyle(color: Colors.white, fontSize: 15),),
           ],
         ),
     
@@ -162,6 +183,10 @@ class _ProductDetails extends StatelessWidget {
 }
 
 class _BackgroundImage extends StatelessWidget {
+
+  final String? imageUrl;
+
+  const _BackgroundImage(this.imageUrl);
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -170,9 +195,9 @@ class _BackgroundImage extends StatelessWidget {
     
         width: double.infinity,
         height: 400,
-        child: const FadeInImage(
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          image: NetworkImage('https://via.placeholder.com/400x300/f6f6f6'),
+        child:  FadeInImage(
+          placeholder: const AssetImage('assets/jar-loading.gif'),
+          image: NetworkImage(imageUrl!),
           fit: BoxFit.cover,
            ),
       ),

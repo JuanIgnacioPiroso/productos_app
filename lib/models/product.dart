@@ -25,8 +25,7 @@ class Product {
         price: json["price"].toDouble(), 
         description: null, 
         id: '', 
-        imageUrl: null, 
-        title: null,
+        imageUrl: null, title: null,
     );
 
     Map<String, dynamic> toJson() => {
