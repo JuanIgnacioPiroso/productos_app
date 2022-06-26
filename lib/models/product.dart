@@ -9,7 +9,8 @@ class Product {
         required this.available,
         required this.name,
         this.picture,
-        required this.price, required imageUrl, required String id, required title, required description,
+        required this.price, 
+        this.id,
     });
 
     bool available;
@@ -22,10 +23,7 @@ class Product {
         available: json["available"],
         name: json["name"],
         picture: json["picture"],
-        price: json["price"].toDouble(), 
-        description: null, 
-        id: '', 
-        imageUrl: null, title: null,
+        price: json["price"].toDouble(),
     );
 
     Map<String, dynamic> toJson() => {
@@ -34,4 +32,13 @@ class Product {
         "picture": picture,
         "price": price,
     };
+
+    Product copy() => Product(
+        available: available,
+        name: name,
+        picture:  picture,
+        price: price,
+        id: id,
+
+    );
 }

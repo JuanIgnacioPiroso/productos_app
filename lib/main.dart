@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'login':(_) => const LoginScreen(),
         'home': (_) =>  HomeScreen(),
-        'product': (_) => const ProductScreen(),
+        'product': (_) => ProductScreen(),
       },
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey.shade300,
