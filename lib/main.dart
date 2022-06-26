@@ -3,7 +3,7 @@ import 'package:productos_app/screens/screens.dart';
 import 'package:productos_app/services/services.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp( AppState());
 
 class AppState extends StatelessWidget {
 
@@ -12,7 +12,7 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
 
-        ChangeNotifierProvider(create: (_) => ProductsService()),
+        ChangeNotifierProvider(create: (_) => ProductsService(),),
 
 
       ],
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'login':(_) => const LoginScreen(),
-        'home': (_) => const HomeScreen(),
+        'home': (_) =>  HomeScreen(),
         'product': (_) => const ProductScreen(),
       },
       theme: ThemeData.light().copyWith(
