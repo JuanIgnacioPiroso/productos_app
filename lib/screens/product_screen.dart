@@ -39,6 +39,7 @@ class ProductScreen extends StatelessWidget {
                   child: IconButton(
                     onPressed: () {
 
+                      // ignore: todo
                       //TODO: Camara o galeria
 
                     }, 
@@ -125,7 +126,7 @@ class _ProductForm extends StatelessWidget {
       boxShadow: [
         BoxShadow(
           color: Colors.black.withOpacity(0.05),
-          offset: Offset(0, 5),
+          offset: const Offset(0, 5),
           blurRadius: 5,
 
         )

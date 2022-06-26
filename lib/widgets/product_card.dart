@@ -191,6 +191,7 @@ class _BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
+      // ignore: sized_box_for_whitespace
       child: Container(
     
         width: double.infinity,

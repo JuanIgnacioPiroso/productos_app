@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:productos_app/models/models.dart';
 import 'package:productos_app/screens/loading_screen.dart';
 import 'package:productos_app/services/services.dart';
 import 'package:productos_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
    
   @override
   Widget build(BuildContext context) {

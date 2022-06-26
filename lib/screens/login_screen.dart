@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:productos_app/providers/login_form_provider.dart';
@@ -52,6 +51,7 @@ class _LoginForm extends StatelessWidget {
 
     final loginForm = Provider.of<LoginFormProvider>(context);
 
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Form(
         key: loginForm.formKey,
@@ -106,6 +106,7 @@ class _LoginForm extends StatelessWidget {
 
                 loginForm.isLoading = false;
 
+                // ignore: use_build_context_synchronously
                 Navigator.restorablePushReplacementNamed(context, 'home');
               },
               color: Colors.deepPurple,
