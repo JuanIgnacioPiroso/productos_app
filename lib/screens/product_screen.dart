@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productos_app/providers/product_form_provider.dart';
 import 'package:productos_app/services/services.dart';
 import 'package:productos_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,24 @@ class ProductScreen extends StatelessWidget {
 
     final productService = Provider.of<ProductsService>(context);
 
+    return ChangeNotifierProvider(
+      create: ((_) =>ProductFormProvider(productService.selectedProduct) ), 
+      child:  _ProductScreenBody(productService: productService),
+      );
+  
+  }
+}
+
+class _ProductScreenBody extends StatelessWidget {
+  const _ProductScreenBody({
+    Key? key,
+    required this.productService,
+  }) : super(key: key);
+
+  final ProductsService productService;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
 
@@ -70,6 +89,10 @@ class _ProductForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final productFormProvider = Provider.of<ProductFormProvider>(context);
+    final product = productFormProvider.product;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
@@ -84,6 +107,16 @@ class _ProductForm extends StatelessWidget {
 
               TextFormField(
 
+                initialValue: product.name,
+                onChanged: (value) => product.name = value,
+                validator: (value){
+                  if (value == null || value.isEmpty) {
+                    return 'Ingrese un nombre valido';
+                  }
+
+                    
+            
+                },
                 decoration: InputDecorations.authInputDecoration(
                   hintText: 'Nombre del producto',
                   labelText: 'Nombre:',
@@ -94,6 +127,13 @@ class _ProductForm extends StatelessWidget {
 
               TextFormField(
 
+                initialValue: product.price.toString(),
+                onChanged: (value) => product.price = double.parse(value),
+                validator: (value){
+                  if (value == null || value.isEmpty) {
+                    return 'Ingrese un precio valido';
+                  }
+                },
                 keyboardType: TextInputType.number,
                 decoration: InputDecorations.authInputDecoration(
                   hintText: '\$100',
