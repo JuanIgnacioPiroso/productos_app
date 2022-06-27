@@ -49,9 +49,7 @@ class ProductsService extends ChangeNotifier{
     notifyListeners();
 
     if (product.id == null) {
-      final url = Uri.https(_baseUrl, 'products.json');
-      final resp = await http.post(url, body: json.encode(product.toJson()));
-      product.id = json.decode(resp.body)['name'];
+
     } else {
 
       await updateProduct(product);
@@ -72,6 +70,11 @@ class ProductsService extends ChangeNotifier{
 
     final url = Uri.https(_baseUrl, 'products/${product.id}.json');
     final resp = await http.put(url, body: json.encode(product.toJson()));
+
+    //TODO: Actualizar el listado de productos
+
+    final index = products.indexWhere((p) => p.id == product.id);
+    products[index] = product;
 
 
     return product.id!;

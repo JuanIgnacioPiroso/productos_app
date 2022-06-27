@@ -86,6 +86,8 @@ class _ProductScreenBody extends StatelessWidget {
 
           await productService.saveOrCreateProduct(productForm.product);
 
+          Navigator.pop(context);
+
 
         },
       ),
@@ -160,7 +162,7 @@ class _ProductForm extends StatelessWidget {
               const SizedBox(height: 30),
 
               SwitchListTile.adaptive(
-                value: true,
+                value: product.available,
                 title: const Text('¿Disponible?'),
                 activeColor: Colors.indigo,
                 onChanged: productFormProvider.updateAvailability
