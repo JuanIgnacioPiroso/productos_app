@@ -69,8 +69,10 @@ class ProductsService extends ChangeNotifier{
 
 
     final url = Uri.https(_baseUrl, 'products/${product.id}.json');
+    // ignore: unused_local_variable
     final resp = await http.put(url, body: json.encode(product.toJson()));
 
+    // ignore: todo
     //TODO: Actualizar el listado de productos
 
     final index = products.indexWhere((p) => p.id == product.id);

@@ -86,6 +86,7 @@ class _ProductScreenBody extends StatelessWidget {
 
           await productService.saveOrCreateProduct(productForm.product);
 
+          // ignore: use_build_context_synchronously
           Navigator.pop(context);
 
 
