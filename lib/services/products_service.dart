@@ -50,6 +50,8 @@ class ProductsService extends ChangeNotifier{
 
     if (product.id == null) {
 
+      await createProduct(product);
+
     } else {
 
       await updateProduct(product);
@@ -71,6 +73,7 @@ class ProductsService extends ChangeNotifier{
     final url = Uri.https(_baseUrl, 'products/${product.id}.json');
     // ignore: unused_local_variable
     final resp = await http.put(url, body: json.encode(product.toJson()));
+    final decodedData = resp.body;
 
     // ignore: todo
     //TODO: Actualizar el listado de productos
@@ -78,6 +81,22 @@ class ProductsService extends ChangeNotifier{
     final index = products.indexWhere((p) => p.id == product.id);
     products[index] = product;
 
+
+    return product.id!;
+
+  }
+
+   Future<String> createProduct(Product product) async {
+
+
+    final url = Uri.https(_baseUrl, 'products.json');
+    // ignore: unused_local_variable
+    final resp = await http.post(url, body: json.encode(product.toJson()));
+    final decodedData = json.decode(resp.body);
+
+    product.id = decodedData['name'];
+
+    products.add(product);
 
     return product.id!;
 
