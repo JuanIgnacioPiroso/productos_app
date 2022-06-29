@@ -147,7 +147,17 @@ class _ProductForm extends StatelessWidget {
                   FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
 
                 ],
-                onChanged: (value) => product.price = double.parse(value),
+                onChanged: (value) {
+
+                  if (double.tryParse(value) == null)  {
+
+                    product.price = 0;
+                    
+                  }
+                  else {
+                    product.price = double.parse(value);
+                  }
+                },
                 validator: (value){
                   if (value == null || value.isEmpty) {
                     return 'Ingrese un precio valido';
