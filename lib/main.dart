@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productos_app/screens/register_screen.dart';
 import 'package:productos_app/screens/screens.dart';
 import 'package:productos_app/services/services.dart';
 import 'package:provider/provider.dart';
@@ -31,11 +32,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Productos App',
-      initialRoute: 'home',
+      initialRoute: 'login',
       routes: {
         'login':(_) => const LoginScreen(),
+        'register': (_) =>  RegisterScreen(),
         'home': (_) =>  const HomeScreen(),
         'product': (_) => const ProductScreen(),
+        
       },
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey.shade300,
