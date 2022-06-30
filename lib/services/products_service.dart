@@ -77,7 +77,6 @@ class ProductsService extends ChangeNotifier{
     final url = Uri.https(_baseUrl, 'products/${product.id}.json');
     // ignore: unused_local_variable
     final resp = await http.put(url, body: json.encode(product.toJson()));
-    final decodedData = resp.body;
 
     // ignore: todo
     //TODO: Actualizar el listado de productos
@@ -135,6 +134,7 @@ class ProductsService extends ChangeNotifier{
     final resp = await http.Response.fromStream(streamResponse);
 
     if (resp.statusCode != 200 && resp.statusCode != 201) {
+      // ignore: avoid_print
       print('Error');
       isSaving = false;
       notifyListeners();

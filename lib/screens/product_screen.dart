@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -72,6 +71,7 @@ class _ProductScreenBody extends StatelessWidget {
                             );
 
                             if (pickedFile == null) {
+                              // ignore: avoid_print
                               print('No selecciono nada');
                               return;
                             }
