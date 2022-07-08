@@ -6,6 +6,8 @@ import 'package:productos_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
